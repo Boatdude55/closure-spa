@@ -1,0 +1,51 @@
+{
+	"name": "SPA",
+	"version": "0.0.1",
+	"description": "SPA made with CLosure, supports state and routing",
+	"author": {
+		"name": "Ivan Mucyo Ngabo",
+		"email": "ivanmucyongabo@gmail.com",
+		"url": ""
+	},
+	"main": "app/js/main.js",
+	"scripts": {
+		"start": "gulp & java -jar google/plovr.jar serve plovr-config.dev.js",
+		"deps": "python google/closure-library/closure/bin/build/depswriter.py  --root_with_prefix='app/js ../../../../../app/js' --output_file=app/js/deps.js",
+		"css": "java -jar google/closure-stylesheets.jar --pretty-print app/styles/index.gss > public/styles/index.css",
+		"sass": "sass --watch app/scss:dist/styles",
+		"zurb": "gulp",
+		"build": "java -jar google/plovr.jar build plovr-config.prod.js",
+		"firebase:dev": "npm run zurb & java -jar google/plovr.jar serve plovr-config.dev.js & firebase serve --port 8081 --only hosting",
+		"firebase:prod": "npm run zurb & npm run build & firebase serve --port 8081 --only hosting",
+		"serve": "zurb & java -jar google/plovr.jar serve plovr.config.prod.js & node express.server.js",
+		"refresh": "kill $(lsof -t -i:9810) & npm run firebase:dev",
+		"kill": "kill $(lsof -t -i:9810)"
+	},
+	"dependencies": {
+		"foundation-sites": "^6.5.0-rc.3",
+		"jquery": "^3.3.1",
+		"what-input": "^5.1.2"
+	},
+	"devDependencies": {
+		"compression": "^1.7.3",
+		"gulp": "^3.9.0",
+		"gulp-autoprefixer": "^6.0.0",
+		"gulp-load-plugins": "^1.5.0",
+		"gulp-sass": "^4.0.2",
+		"motion-ui": "^2.0.3",
+		"sw-precache": "^5.2.1"
+	},
+	"engines": {
+		"node": ">=6.11.3"
+	},
+	"keywords": [
+		"closure library"
+	],
+	"license": "MIT",
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://en.wikipedia.org/wiki/MIT_License"
+		}
+	]
+}

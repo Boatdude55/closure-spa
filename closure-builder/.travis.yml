@@ -1,0 +1,37 @@
+language: java
+
+os:
+  - linux
+
+osx_image: xcode8
+
+jdk:
+  - oraclejdk9
+  - openjdk11
+
+env:
+  - NODE_VERSION=node
+  - NODE_VERSION=8
+  - NODE_VERSION=9
+
+install:
+  - if [ $TRAVIS_OS_NAME == "darwin" ]; then
+      git clone https://github.com/creationix/nvm.git /tmp/.nvm;
+      source /tmp/.nvm/nvm.sh;
+    fi
+  - nvm install $NODE_VERSION
+  - npm install
+
+script:
+  - unset _JAVA_OPTIONS
+  - nvm use $NODE_VERSION
+  - npm test
+
+deploy:
+  provider: npm
+  email: NPM@MarkusBordihn.de
+  api_key:
+    secure: s7pAlW+SGghl5q29pAgncJml7Ef8CGcihMIxPE7bfaQ4bw3k2PgXFCVldvT6RYaCRrZZMmRxxkpqWo2wpdyHCRJW+2KhyWwl4bFncQq9h7aDZEt23nlTrmS5IQpezLM9+KHit2arBzciePtrJbzcky7aqpdnihEcB2ViDoHre8xL088EQzWsmqphqkKVE/mEEOXUQjUVKfdCn6fYQ5q1akpOFwhfxPY5PF138ACRqYyHyG78r7zBMhz4sIuRzVoep2JlyXuLzeEii32OK15NTV8In0t3pcsl1AQVPU3pQT+YCeNYWinpQFZE8YrMIbdrqqguNh4DrVqJEvebkVdUu/j7jLecWKbh9LA53FcYTOvpxnzu2RIdBkXirt7Nk9O+8a5ifcsMbiKmUP+gpTPVjOeSE7G4CJ3ANT/9qsN3XD7ymKjWyDrg/64e6abOtgLrtMgkqfSBIawzMoP7venTHGisdDeLIk+OqNTV9XMmNy58ADrh/6HbuS13vK/87d/O1oq6OenPiYU/z4hNo6USCtJ6yMfUC/6QuO2QsFX7MN7Z4x4Lx3gD0+B3/mHZbKBZwqxUfVz0T3cxxd8iKG/92ETDtmDl6SqJsWItcIyDxYcnxVUxuZmXKmOQnYNF4aOlyXGL1HkGu+4hEZnegKDIOrvuS7Y0fzvqKv5sv18m3kU=
+  on:
+    tags: true
+    repo: google/closure-builder

@@ -1,0 +1,7 @@
+coverage
+deps.js
+grunt-closure-builder/*
+node_modules/*
+runtime/*
+test_files/*
+third_party/*

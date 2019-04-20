@@ -1,0 +1,16 @@
+{namespace soy_test_1 autoescape="strict"}
+
+
+/**
+ * Hello Name.
+ */
+{template .helloName}
+  {@param greetingWord: string}
+  {@param name: string}
+
+  {if not $greetingWord}
+    Hello {$name}!
+  {else}
+    {$greetingWord} {$name}!
+  {/if}
+{/template}

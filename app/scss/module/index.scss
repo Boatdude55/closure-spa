@@ -1,0 +1,51 @@
+.ui-structor-frame {
+	@include xy-grid-container(100%);
+	.ui-structor-topbar {
+		@include xy-grid;
+		outline: none;
+		&-horizontal {
+
+		}
+
+		&-header {
+			@include xy-cell(2);
+			&-disabled {
+				color: #ccc;
+			}
+		}
+
+		&-item {
+			@include xy-cell(2);
+			cursor: pointer;
+			&-highlight {
+				// background-color: #d6e9f8;
+				/* 
+				Use an explicit top and bottom border so that the selection is visible
+				* in high contrast mode. */
+				// border-color: #d6e9f8;
+				border-style: dotted;
+				border-width: 1px 0;
+				padding-bottom: 3px;
+				padding-top: 3px;
+			}
+			&-active {
+				// background-color: #d6e9f8;
+				/* 
+				Use an explicit top and bottom border so that the selection is visible
+				* in high contrast mode. */
+				// border-color: #d6e9f8;
+				border-style: dotted;
+				border-width: 1px 0;
+				padding-bottom: 3px;
+				padding-top: 3px;
+			}
+			&-content {
+				text-align: center;
+			}
+		}
+
+	}
+	.ui-structor-body {
+		@include xy-grid;
+	}
+}
